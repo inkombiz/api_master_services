@@ -37,7 +37,7 @@ public class BankModel {
 
     @NotBlank(message = "username tidak boleh kosong")
     @Column(name = "Name")
-    private String username;
+    private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false)
