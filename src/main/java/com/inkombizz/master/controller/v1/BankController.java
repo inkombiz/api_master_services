@@ -32,7 +32,7 @@ public class BankController {
    BankRepository bankDao;
 	
 	@GetMapping("/")
-    public ResponseEntity<?> alldata(@RequestParam String search, String email) {
+    public ResponseEntity<?> alldata(@RequestParam String search, String name) {
     	try {
     		if (search.isEmpty()) {  			
     		List<BankModel> banks = bankDao.findAll();
@@ -51,7 +51,7 @@ public class BankController {
     			//return new Response().response_json(true,"Ok",bankDao.findByBankname(search),HttpStatus.OK);
 //    		return new Response().response_json(true,"Ok",bankDao.findByBanknameContaining(search),HttpStatus.OK);
 //    			return new Response().response_json(true,"Ok",bankDao.findByBanknameContainingIgnoreCase(search),HttpStatus.OK);
-    		return new Response().response_json(true,"Ok",bankDao.findByBanknameOrEmail(search,email),HttpStatus.OK);
+    		return new Response().response_json(true,"Ok",bankDao.findByBankCodeOrName(search,name),HttpStatus.OK);
     	}catch(Exception ex)
 	{
 		return new Response().response_json(true, "Fail", null, HttpStatus.INTERNAL_SERVER_ERROR);

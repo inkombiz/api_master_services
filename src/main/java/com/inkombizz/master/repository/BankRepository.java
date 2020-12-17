@@ -14,20 +14,20 @@ public interface BankRepository extends JpaRepository<BankModel, String> {
 	
 //	List<BankModel> findByBankname(String bankname);
 	
-	BankModel findByBankname(String bankname);
+	BankModel findByName(String name);
 	
-	List<BankModel> findByBanknameContaining(String bankname);
+	List<BankModel> findByNameContaining(String name);
 	//untuk pencarian like by name cuma case sensitive
 	
-	List<BankModel> findByBanknameContainingIgnoreCase(String bankname);
+	List<BankModel> findByNameContainingIgnoreCase(String name);
 	//untuk pencarian like by name yg tidak sensitive
 	
 //	@Query("select c from BankModel c "
 //			+ " where c.email =:s_email: "
 //			+ " or c.bankname=:s_bankname: ") 
 	@Query("select c from BankModel c "
-			+ "where c.email  like %:s_email% "
-			+ "or c.bankname like %:s_bankname% ")
-	List<BankModel> findByBanknameOrEmail(String s_bankname, String s_email);
+			+ "where c.code  like %:s_code% "
+			+ "or c.name like %:s_name% ")
+	List<BankModel> findByBankCodeOrName(String s_code, String s_name);
 	//untuk pencarian like by name yg tidak sensitive
 }
