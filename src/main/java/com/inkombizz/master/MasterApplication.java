@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication(exclude = { ErrorMvcAutoConfiguration.class })
-public class BankApplication {
+public class MasterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BankApplication.class, args);
+		SpringApplication.run(MasterApplication.class, args);
 	}
 
 }

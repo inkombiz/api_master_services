@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BankDto {
-	
+public class AssetCategoryDto {
 	private String name;
 	private String remark;
 }
