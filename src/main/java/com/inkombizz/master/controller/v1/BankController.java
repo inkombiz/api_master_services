@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inkombizz.master.model.BankModel;
+import com.inkombizz.master.model.Bank;
 import com.inkombizz.master.model.dto.BankDto;
 import com.inkombizz.master.repository.BankRepository;
 import com.inkombizz.master.util.Response;
@@ -35,10 +35,10 @@ public class BankController {
     public ResponseEntity<?> alldata(@RequestParam String search, String name) {
     	try {
     		if (search.isEmpty()) {  			
-    		List<BankModel> banks = bankDao.findAll();
+    		List<Bank> banks = bankDao.findAll();
     		List<BankDto> dtos = new ArrayList<>();
     		
-    		for (BankModel m :banks) {
+    		for (Bank m :banks) {
     			ModelMapper mapper = new ModelMapper();
         		BankDto dto = mapper.map(m, BankDto.class);
         		dtos.add(dto);
@@ -64,7 +64,7 @@ public class BankController {
 
     		//  ini digunakan untuk custome data yg di ambil  		
     		ModelMapper mapper = new ModelMapper();
-    		BankModel model =bankDao.findById(code).get();
+    		Bank model =bankDao.findById(code).get();
     		BankDto dto = mapper.map(model, BankDto.class);
     		
     		return new Response().response_json(true,"Ok",dto,HttpStatus.OK);
@@ -77,7 +77,7 @@ public class BankController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@Valid @RequestBody BankModel model) {
+    public ResponseEntity<?> create(@Valid @RequestBody Bank model) {
     	try {
     	//	model.setPassword(encoder.encode(model.getPassword()));
     		bankDao.save(model);	
@@ -89,7 +89,7 @@ public class BankController {
     }
 
     @PutMapping("/{code}")
-	public ResponseEntity<?> update(@RequestBody BankModel model,@PathVariable String code) {
+	public ResponseEntity<?> update(@RequestBody Bank model,@PathVariable String code) {
     	try {
     		bankDao.save(model);	
             return new Response().response_json(true,"Save Success",model,HttpStatus.OK);

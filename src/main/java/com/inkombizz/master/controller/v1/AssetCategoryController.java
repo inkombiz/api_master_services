@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inkombizz.master.model.AssetCategoryModel;
+import com.inkombizz.master.model.AssetCategory;
 import com.inkombizz.master.model.dto.AssetCategoryDto;
 import com.inkombizz.master.repository.AssetCategoryRepository;
 import com.inkombizz.master.util.Response;
@@ -34,10 +34,10 @@ public class AssetCategoryController {
 	public ResponseEntity<?> alldata(@RequestParam String search, String name) {
 		try {
 			if (search.isEmpty()) {
-				List<AssetCategoryModel> AssetCategorys = AssetCategoryDao.findAll();
+				List<AssetCategory> AssetCategorys = AssetCategoryDao.findAll();
 				List<AssetCategoryDto> dtos = new ArrayList<>();
 
-				for (AssetCategoryModel m : AssetCategorys) {
+				for (AssetCategory m : AssetCategorys) {
 					ModelMapper mapper = new ModelMapper();
 					AssetCategoryDto dto = mapper.map(m, AssetCategoryDto.class);
 					dtos.add(dto);
@@ -61,7 +61,7 @@ public class AssetCategoryController {
 		try {
 
 			ModelMapper mapper = new ModelMapper();
-			AssetCategoryModel model = AssetCategoryDao.findById(code).get();
+			AssetCategory model = AssetCategoryDao.findById(code).get();
 			AssetCategoryDto dto = mapper.map(model, AssetCategoryDto.class);
 
 			return new Response().response_json(true, "Ok", dto, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class AssetCategoryController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<?> create(@Valid @RequestBody AssetCategoryModel model) {
+	public ResponseEntity<?> create(@Valid @RequestBody AssetCategory model) {
 		try {
 
 			AssetCategoryDao.save(model);
@@ -84,7 +84,7 @@ public class AssetCategoryController {
 	}
 
 	@PutMapping("/{code}")
-	public ResponseEntity<?> update(@RequestBody AssetCategoryModel model, @PathVariable String code) {
+	public ResponseEntity<?> update(@RequestBody AssetCategory model, @PathVariable String code) {
 		try {
 			AssetCategoryDao.save(model);
 			return new Response().response_json(true, "Save Success", model, HttpStatus.OK);

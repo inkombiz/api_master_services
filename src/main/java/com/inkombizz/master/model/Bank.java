@@ -28,14 +28,14 @@ import lombok.Setter;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "mst_asset_category")
-public class AssetCategoryModel {
+@Table(name = "mst_bank")
+public class Bank {
 	
 	@Id
     @Column(name = "Code")
     private String code;
 
-    @NotBlank(message = "ASset Category Name tidak boleh kosong")
+    @NotBlank(message = "Bank Name tidak boleh kosong")
     @Column(name = "Name")
     private String name;
     
@@ -71,4 +71,14 @@ public class AssetCategoryModel {
     
     @Column(name = "UpdatedBy")
     private String updatedBy;
+    
+// 		@Digits UNTUUK number
+// 		@CreditCardNumber untuk check cc
+//		@Min(18) untuk check minimal umur atau minimal number
+    
+//    	@Past untuk check tanggal d masa lalu
+//    	date tanggal lahir;
+    
+//		@Future untuk check tanggal dari hari ini sampai kedepannya    
+// 		Date tglsometing
 }
